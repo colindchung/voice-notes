@@ -15,7 +15,6 @@ const terminology = `- Byterat (pronounced "byte-rat"): The company I work for w
 `;
 
 function App() {
-  const [notes, setNotes] = useState<string[]>([]);
   const [isRecording, setIsRecording] = useState(false);
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
   const [transcript, setTranscript] = useState('');
@@ -132,12 +131,16 @@ function App() {
       const formattedText = data.choices[0].message.content;
 
       setFormattedNote(formattedText);
-      setNotes([...notes, formattedText]);
     } catch (error) {
       console.error('Error formatting to markdown:', error);
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const clearTranscript = () => {
+    setTranscript('');
+    setFormattedNote('');
   };
 
   return (
@@ -195,13 +198,21 @@ function App() {
                 transcript || 'Your transcript will appear here...'
               )}
             </div>
-            <button
-              onClick={formatToMarkdown}
-              disabled={!transcript || isLoading}
-              className="mt-4 w-full rounded-md bg-blue-600 px-4 py-2 hover:bg-blue-700 disabled:bg-gray-600"
-            >
-              {isLoading ? 'Processing...' : 'Format to Markdown'}
-            </button>
+            <div className="flex flex-row space-x-2">
+              <button
+                onClick={clearTranscript}
+                className="mt-4 w-full rounded-md bg-gray-600 px-4 py-2 hover:bg-gray-700 disabled:bg-gray-600"
+              >
+                Clear Transcript
+              </button>
+              <button
+                onClick={formatToMarkdown}
+                disabled={!transcript || isLoading}
+                className="mt-4 w-full rounded-md bg-green-600 px-4 py-2 hover:bg-blue-700 disabled:bg-gray-600"
+              >
+                {isLoading ? 'Processing...' : 'Format to Markdown'}
+              </button>
+            </div>
           </div>
 
           <div className="rounded-lg bg-gray-800 p-4">
@@ -226,24 +237,6 @@ function App() {
                 <pre className="whitespace-pre-wrap">
                   {formattedNote || 'Your formatted note will appear here...'}
                 </pre>
-              )}
-            </div>
-          </div>
-
-          <div className="rounded-lg bg-gray-800 p-4">
-            <h2 className="mb-2 text-xl font-semibold">Saved Notes</h2>
-            <div className="max-h-[300px] overflow-y-auto rounded bg-gray-700 p-3">
-              {notes.length === 0 ? (
-                <p className="text-gray-400">No saved notes yet</p>
-              ) : (
-                <ul className="space-y-2">
-                  {notes.map((note, index) => (
-                    <li key={index} className="border-b border-gray-600 pb-2">
-                      <div className="mb-1 text-sm text-gray-400">Note {index + 1}</div>
-                      <pre className="text-sm whitespace-pre-wrap">{note.substring(0, 100)}...</pre>
-                    </li>
-                  ))}
-                </ul>
               )}
             </div>
           </div>
