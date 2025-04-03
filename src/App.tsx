@@ -10,8 +10,18 @@ const terminology = `- Byterat (pronounced "byte-rat"): The company I work for w
 - JupyterLab: The UI for the Jupyter Notebooks (single user instance)
 - JupyterHub: The service that I am using to host the Jupyter Notebooks
 - Node: A single operation in the AI workflow
-- Timescale: The database that I am using to store the data for our platform
 - Sync Agent: Agent installed on our customer's machines to send data into our cloud
+- Enpower: Customer
+- Li-S: Customer
+- Indiana BIC: Customer (also referred to as just BIC)
+- Arbin, Neware, Biologic, Bitrode, Maccor: Brands of cyclers that our customers use
+- BDF: Battery Data Format
+- DAG: Directed Acyclic Graph - used by Ohm AI
+- Lovable, Bolt, Replit, Cursor: AI tools we use in daily workflow
+- Prisma: ORM that I use to interact with the database
+- React, Vite, Tailwind, Mantine, Framer: UI libraries
+- Vercel, pgvector, Opensearch, Timescale, GraphQL, Mage: Backend third party services
+- S3, SQS, SNS, EC2, ECR, Lambda, API Gateway: AWS services
 `;
 
 function App() {
