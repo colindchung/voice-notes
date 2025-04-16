@@ -169,7 +169,7 @@ function App() {
   };
 
   return (
-    <main className="flex h-screen w-screen flex-col bg-gray-900 p-8 text-white">
+    <main className="flex min-h-screen w-full flex-col bg-gray-900 p-8 text-white">
       <h1 className="mb-8 text-3xl font-bold text-white underline">Mind Vault</h1>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
