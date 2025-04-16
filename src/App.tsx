@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import './App.css';
-
+import { Square2StackIcon } from '@heroicons/react/24/outline';
+import toast, { Toaster } from 'react-hot-toast';
 const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
 /* TODOS:
@@ -22,6 +23,7 @@ const terminology = `- Byterat (pronounced "byte-rat"): The company I work for w
 - Enpower: Customer
 - Li-S: Customer
 - Indiana BIC: Customer (also referred to as just BIC)
+- Camp: Test workspace
 - Arbin, Neware, Biologic, Bitrode, Maccor: Brands of cyclers that our customers use
 - BDF: Battery Data Format
 - DAG: Directed Acyclic Graph - used by Ohm AI
@@ -161,8 +163,15 @@ function App() {
     setFormattedNote('');
   };
 
+  const copyFormattedNote = () => {
+    if (!formattedNote) return;
+    navigator.clipboard.writeText(formattedNote);
+
+    toast.success('Formatted note copied to clipboard');
+  };
+
   return (
-    <main className="flex h-full w-full flex-col bg-gray-900 p-8 text-white">
+    <main className="flex h-screen w-screen flex-col bg-gray-900 p-8 text-white">
       <h1 className="mb-8 text-3xl font-bold text-white underline">Voice Notes</h1>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -246,7 +255,16 @@ function App() {
 
         <div className="flex flex-col space-y-4">
           <div className="flex-grow rounded-lg bg-gray-800 p-4">
-            <h2 className="mb-2 text-xl font-semibold">Formatted Note</h2>
+            <div className="mb-2 flex flex-row justify-between">
+              <h2 className="mb-2 text-xl font-semibold">Formatted Note</h2>
+
+              <button
+                onClick={copyFormattedNote}
+                className="rounded-md bg-gray-600 px-2 text-sm text-white hover:bg-gray-700"
+              >
+                <Square2StackIcon className="h-5 w-5" />
+              </button>
+            </div>
             <div className="markdown-content max-h-[600px] min-h-[150px] overflow-y-auto rounded bg-gray-700 p-3">
               {isLoading && !formattedNote ? (
                 <div className="flex h-full items-center justify-center">
@@ -262,6 +280,7 @@ function App() {
           </div>
         </div>
       </div>
+      <Toaster />
     </main>
   );
 }
