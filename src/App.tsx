@@ -3,6 +3,14 @@ import './App.css';
 
 const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
+/* TODOS:
+- Add a button to copy the formatted note
+- Store transcript and vector embeddings in supa
+- Allow record for a different date
+- Add a button to copy the formatted note
+- Fetch terminology from supa
+*/
+
 const terminology = `- Byterat (pronounced "byte-rat"): The company I work for which provides AI and a data pipeline to battery science labs
   - The team consists of Penny (CEO), Paul (CTO), Doel (Front end lead), Nawar (Data lead), and myself (Full stack lead)
 - Ohm AI: The LLM integration that I am building for Byterat
@@ -77,11 +85,11 @@ function App() {
     setIsLoading(true);
 
     try {
-      // Use OpenAI's Whisper API for transcription
       const formData = new FormData();
       formData.append('file', audioBlob, 'recording.wav');
       formData.append('model', 'whisper-1');
 
+      // TODO: can i feed in terminology at this level
       const response = await fetch('https://api.openai.com/v1/audio/transcriptions', {
         method: 'POST',
         headers: {
@@ -199,6 +207,7 @@ function App() {
 
           <div className="rounded-lg bg-gray-800 p-4">
             <h2 className="mb-2 text-xl font-semibold">Transcript</h2>
+            {/* TODO, allow editing before sending to summarizer */}
             <div className="max-h-[300px] min-h-[150px] overflow-y-auto rounded bg-gray-700 p-3">
               {isLoading && !transcript ? (
                 <div className="flex h-full items-center justify-center">
@@ -245,6 +254,7 @@ function App() {
                 </div>
               ) : (
                 <pre className="whitespace-pre-wrap">
+                  {/* TODO: add copy text button */}
                   {formattedNote || 'Your formatted note will appear here...'}
                 </pre>
               )}
