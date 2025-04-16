@@ -5,10 +5,8 @@ import toast, { Toaster } from 'react-hot-toast';
 const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
 /* TODOS:
-- Add a button to copy the formatted note
 - Store transcript and vector embeddings in supa
 - Allow record for a different date
-- Add a button to copy the formatted note
 - Fetch terminology from supa
 */
 
