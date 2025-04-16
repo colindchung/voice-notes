@@ -170,7 +170,7 @@ function App() {
 
   return (
     <main className="flex h-screen w-screen flex-col bg-gray-900 p-8 text-white">
-      <h1 className="mb-8 text-3xl font-bold text-white underline">Voice Notes</h1>
+      <h1 className="mb-8 text-3xl font-bold text-white underline">Mind Vault</h1>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div className="flex flex-col space-y-4">
