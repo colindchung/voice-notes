@@ -30,6 +30,7 @@ const terminology = `- Byterat (pronounced "byte-rat"): The company I work for w
 - React, Vite, Tailwind, Mantine, Framer: UI libraries
 - Vercel, pgvector, Opensearch, Timescale, GraphQL, Mage: Backend third party services
 - S3, SQS, SNS, EC2, ECR, Lambda, API Gateway: AWS services
+- Claude Sonnet: AI model (sometimes picked up as CloudSonic by voice)
 `;
 
 function App() {
